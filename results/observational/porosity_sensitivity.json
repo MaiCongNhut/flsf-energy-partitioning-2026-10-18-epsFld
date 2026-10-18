@@ -1,0 +1,42 @@
+{
+  "phi_used": 0.44,
+  "max_SWC_mean_of_probes_FC": 0.392275,
+  "by_phi": {
+    "0.40": {
+      "conventional_slope": 0.7245706791122389,
+      "augmented_slope": 0.9398834670614885,
+      "G_mean_10_1430": 40.228177522447844,
+      "median_G_over_Rn_bright": 0.06945916722246787
+    },
+    "0.42": {
+      "conventional_slope": 0.723589948214631,
+      "augmented_slope": 0.9382950076829696,
+      "G_mean_10_1430": 39.84921849552546,
+      "median_G_over_Rn_bright": 0.06881586430009046
+    },
+    "0.44": {
+      "conventional_slope": 0.7226087556736364,
+      "augmented_slope": 0.9367049840659967,
+      "G_mean_10_1430": 39.47025946860308,
+      "median_G_over_Rn_bright": 0.06809058345414529
+    },
+    "0.46": {
+      "conventional_slope": 0.7216271289525206,
+      "augmented_slope": 0.9351134761745096,
+      "G_mean_10_1430": 39.0913004416807,
+      "median_G_over_Rn_bright": 0.0674919518577394
+    },
+    "0.48": {
+      "conventional_slope": 0.7206450952352469,
+      "augmented_slope": 0.9335205629855742,
+      "G_mean_10_1430": 38.71234141475832,
+      "median_G_over_Rn_bright": 0.06689487220287632
+    },
+    "0.50": {
+      "conventional_slope": 0.7196626814281096,
+      "augmented_slope": 0.9319263224959321,
+      "G_mean_10_1430": 38.33338238783595,
+      "median_G_over_Rn_bright": 0.06619975712901023
+    }
+  }
+}

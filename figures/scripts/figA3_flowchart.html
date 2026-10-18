@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- Fig. A3 source. PNG: python figures/scripts/figA3_render.py (headless Chromium, 2700 px wide).
+     Editable Word version: python figures/scripts/figA3_docx.py (same content).
+     Typesetting follows the manuscript: symbols of quantities in italic (<i>), numbers, units, function names
+     and descriptive subscripts in roman. -->
+<html><head><meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { background:#ffffff; }
+  body { width:2700px; font-family:"Nimbus Roman","Times New Roman",Georgia,serif; color:#000;
+         padding:22px 110px 22px 110px; }
+  .title { text-align:center; font-weight:700; font-size:76px; letter-spacing:1px; }
+  .subtitle { text-align:center; font-style:italic; font-size:47px; margin-top:10px; color:#111; }
+  .flow { margin-top:0; }
+  .box { border:3px solid #000; padding:12px 26px 14px 26px; text-align:center; }
+  .box.shaded { background:#ededed; }
+  .hdr { font-weight:700; font-size:68px; letter-spacing:0px; line-height:1.12; }
+  .eq { font-size:60px; margin-top:7px; line-height:1.14; }
+  .note { font-size:49px; margin-top:6px; color:#222; line-height:1.14; }
+  .arrow { text-align:center; font-size:54px; line-height:1.0; margin:3px 0 2px 0; }
+  sub { font-size:0.72em; vertical-align:-0.28em; }
+  sup { font-size:0.72em; vertical-align:0.5em; }
+</style></head>
+<body>
+  <div class="flow">
+
+    <div class="box">
+      <div class="hdr">METEOROLOGICAL INPUTS</div>
+      <div class="eq"><i>T</i><sub>a</sub>, RH, <i>u</i>, <i>F</i><sub>sd</sub>, <i>F</i><sub>ld</sub>, SWC&nbsp;&nbsp; + measured <i>R</i><sub>n</sub> (for <i>G</i> and &Delta;<i>Q</i><sub>c</sub>)</div>
+      <div class="note">half-hourly tower record (Table 1) &middot; observed fluxes for calibration and evaluation (EddyPro v7.0.9, PyFluxPro v3.4)</div>
+    </div>
+    <div class="arrow">&darr;</div>
+
+    <div class="box">
+      <div class="hdr">INITIALIZE SURFACE TEMPERATURE</div>
+      <div class="eq"><i>T</i><sub>s</sub> = <i>T</i><sub>a</sub> + 3 K</div>
+      <div class="note">first guess for the iterative solver</div>
+    </div>
+    <div class="arrow">&darr;</div>
+
+    <div class="box">
+      <div class="hdr">NET RADIATION</div>
+      <div class="eq"><i>R</i><sub>n</sub> = (1 &minus; <i>&alpha;</i>)<i>F</i><sub>sd</sub> + <i>&epsilon;F</i><sub>ld</sub> &minus; <i>&epsilon;&sigma;T</i><sub>s</sub><sup>4</sup></div>
+      <div class="eq"><i>&alpha;</i>(<i>t</i>) = <i>&alpha;</i><sub>noon</sub> + &Delta;<i>&alpha;</i>&middot;[1 &minus; cos(&pi;|<i>t</i> &minus; 12|/6)],&nbsp;&nbsp; <i>&alpha;</i><sub>noon</sub> = 0.098,&nbsp; &Delta;<i>&alpha;</i> = 0.0065</div>
+      <div class="note">gray body: <i>&epsilon;</i> = 0.97 for the absorbed and the emitted longwave radiation</div>
+    </div>
+    <div class="arrow">&darr;</div>
+
+    <div class="box">
+      <div class="hdr">ELECTRICITY GENERATION</div>
+      <div class="eq"><i>E</i><sub>elec</sub> = <i>&eta;F</i><sub>sd</sub>,&nbsp;&nbsp; <i>&eta;</i> = 0.11&nbsp;&nbsp; (<i>F</i><sub>sd</sub> &gt; 50 W m<sup>&minus;2</sup>)</div>
+      <div class="note">energy exported off-site as electricity, removed from the local heat budget</div>
+    </div>
+    <div class="arrow">&darr;</div>
+
+    <div class="box">
+      <div class="hdr">AERODYNAMIC RESISTANCE&nbsp; <i>r</i><sub>a</sub></div>
+      <div class="eq"><i>r</i><sub>a,n</sub> = [ln((<i>z</i> &minus; <i>d</i>)/<i>z</i><sub>0m</sub>)&middot;ln((<i>z</i> &minus; <i>d</i>)/<i>z</i><sub>0h</sub>)]/(<i>&kappa;</i><sup>2</sup><i>u</i>)</div>
+      <div class="eq"><i>r</i><sub>a</sub> = <i>r</i><sub>a,n</sub> &middot; <i>f</i><sub>seas</sub> &middot; <i>f</i><sub>stab</sub> &middot; <i>f</i><sub>RH</sub> &middot; <i>f</i><sub>m</sub>,&nbsp;&nbsp; <i>f</i><sub>m</sub> = 1.57</div>
+      <div class="note"><i>f</i><sub>seas</sub>: 1.00 May&ndash;Sep, 1.02 Apr and Oct, 1.05 Dec&ndash;Feb, 1.08 Mar and Nov</div>
+    </div>
+    <div class="arrow">&darr;</div>
+
+    <div class="box">
+      <div class="hdr">CANOPY RESISTANCE&nbsp; <i>r</i><sub>c</sub>&nbsp; (JARVIS&ndash;STEWART)</div>
+      <div class="eq"><i>r</i><sub>c</sub> = <i>r</i><sub>c,base</sub> &middot; <i>f</i><sub>seas(rc)</sub> &middot; <i>f</i><sub>Ta</sub> &middot; <i>f</i><sub>RH(rc)</sub> &middot; <i>f</i><sub>SWC</sub> &middot; <i>f</i><sub>VPD</sub> &middot; <i>f</i><sub>Fsd</sub>,&nbsp;&nbsp; 30 &le; <i>r</i><sub>c</sub> &le; 800 s m<sup>&minus;1</sup></div>
+      <div class="eq"><i>r</i><sub>c,base</sub> (full record): MAM 580, JJA 596, SON 591, DJF 649 s m<sup>&minus;1</sup></div>
+      <div class="note"><i>f</i><sub>seas(rc)</sub>: 0.85 Jun&ndash;Aug, 1.20 Sep, 1.10 May and Oct, 0.90 Mar and Nov, 1.00 Apr and Dec&ndash;Feb</div>
+    </div>
+    <div class="arrow">&darr;</div>
+
+    <div class="box">
+      <div class="hdr">GROUND HEAT &amp; FOUNDATION STORAGE</div>
+      <div class="eq"><i>G</i><sub>surface</sub> = <i>G</i><sub>plate</sub> + <i>C</i><sub>s</sub>(SWC)&middot;&Delta;<i>z</i>&middot;(d<i>T</i><sub>soil</sub>/d<i>t</i>),&nbsp;&nbsp; &Delta;<i>z</i> = 0.10 m</div>
+      <div class="eq"><i>C</i><sub>s</sub>(SWC) = (1 &minus; <i>&phi;</i>)<i>C</i><sub>m</sub> + SWC&middot;<i>C</i><sub>w</sub> + (<i>&phi;</i> &minus; SWC)<i>C</i><sub>a</sub>,&nbsp;&nbsp; <i>&phi;</i> = 0.44</div>
+      <div class="eq"><i>G</i> = <i>g</i><sub>1</sub><i>R</i><sub>n</sub> + <i>g</i><sub>2</sub>(d<i>R</i><sub>n</sub>/d<i>t</i>) + <i>g</i><sub>3</sub>&nbsp;&nbsp; (hysteresis form, per season)</div>
+      <div class="eq">&Delta;<i>Q</i><sub>c</sub> = <i>c</i><sub>1</sub><i>R</i><sub>n</sub> + <i>c</i><sub>2</sub>(d<i>R</i><sub>n</sub>/d<i>t</i>) + <i>c</i><sub>3</sub>,&nbsp;&nbsp; <i>c</i><sub>1</sub> = 0.0430, <i>c</i><sub>2</sub> = 131 s, <i>c</i><sub>3</sub> = &minus;4.3 W m<sup>&minus;2</sup></div>
+      <div class="note"><i>R</i><sub>n</sub> and d<i>R</i><sub>n</sub>/d<i>t</i> measured &middot; <i>G</i> fitted to <i>G</i><sub>surface</sub> &middot; &Delta;<i>Q</i><sub>c</sub>: concrete-pile heat storage (OHM)</div>
+    </div>
+    <div class="arrow">&darr;</div>
+
+    <div class="box">
+      <div class="hdr">TURBULENT HEAT FLUXES</div>
+      <div class="eq"><i>H</i> = <i>&rho;c</i><sub>p</sub>(<i>T</i><sub>s</sub> &minus; <i>T</i><sub>a</sub>)/<i>r</i><sub>a</sub></div>
+      <div class="eq"><i>LE</i> = <i>&rho;L</i><sub>v</sub>[<i>q</i><sub>s</sub>(<i>T</i><sub>s</sub>) &minus; <i>q</i><sub>a</sub>]/(<i>r</i><sub>a</sub> + <i>r</i><sub>c</sub>)</div>
+      <div class="note"><i>r</i><sub>c</sub> is bypassed (<i>r</i><sub>a</sub> only) when <i>q</i><sub>s</sub>(<i>T</i><sub>s</sub>) &lt; <i>q</i><sub>a</sub> (dew or condensation)</div>
+    </div>
+    <div class="arrow">&darr;</div>
+
+    <div class="box">
+      <div class="hdr">SURFACE-TEMPERATURE SOLVER&nbsp; (NEWTON&ndash;RAPHSON)</div>
+      <div class="eq">Res(<i>T</i><sub>s</sub>) = <i>R</i><sub>n</sub> &minus; <i>H</i> &minus; <i>LE</i> &minus; <i>G</i> &minus; <i>E</i><sub>elec</sub> &minus; &Delta;<i>Q</i><sub>c</sub>,&nbsp;&nbsp; <i>T</i><sub>s</sub> &larr; <i>T</i><sub>s</sub> &minus; Res/(dRes/d<i>T</i><sub>s</sub>)</div>
+      <div class="note">with the updated <i>T</i><sub>s</sub>, repeat from NET RADIATION until |Res| &lt; 0.1 W m<sup>&minus;2</sup> (at most 50 iterations)</div>
+    </div>
+    <div class="arrow">&darr;</div>
+
+    <div class="box">
+      <div class="hdr">OUTPUTS</div>
+      <div class="eq"><i>R</i><sub>n</sub> = <i>H</i> + <i>LE</i> + <i>G</i> + <i>E</i><sub>elec</sub> + &Delta;<i>Q</i><sub>c</sub>&nbsp; (solver solution)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>&beta;</i> = <i>H</i>/<i>LE</i></div>
+      <div class="note">diurnal residual correction of <i>H</i> and <i>LE</i>, added after the solution: &Delta;<i>F</i> = <i>a</i><sub><i>F</i></sub> sin <i>&theta;</i> + <i>b</i><sub><i>F</i></sub> cos <i>&theta;</i> + <i>c</i><sub><i>F</i></sub>,&nbsp; <i>&theta;</i> = (<i>t</i> &minus; 12)&pi;/6</div>
+      <div class="note"><i>F</i> = <i>H</i>, <i>LE</i>; reported flux <i>F</i> + &Delta;<i>F</i></div>
+      <div class="note">five energy terms and the Bowen ratio at every half-hourly step</div>
+    </div>
+    <div class="arrow">&darr;</div>
+
+    <div class="box shaded">
+      <div class="hdr">CALIBRATION &amp; VALIDATION</div>
+      <div class="note">season-stratified five-fold cross-validation (<i>r</i><sub>c,base</sub> and diurnal correction refitted in each fold)</div>
+      <div class="note">fixed once: <i>&alpha;</i><sub>noon</sub>, &Delta;<i>&alpha;</i>, <i>g</i><sub>1</sub>&ndash;<i>g</i><sub>3</sub>, <i>f</i><sub>m</sub> (full record); <i>c</i><sub>1</sub>&ndash;<i>c</i><sub>3</sub> (pile temperature record)</div>
+      <div class="note">benchmarked against principal-component regression (PCR) and a convolutional neural network (CNN)</div>
+      <div class="note">independent hold-out test: training 1 May 2024 to 30 April 2025, test 1 May 2025 to 1 February 2026</div>
+      <div class="note"><i>R</i><sup>2</sup> (cross-validation / hold-out): <i>H</i> 0.90 / 0.91 &middot; <i>LE</i> 0.64 / 0.65 &middot; <i>G</i> 0.81 / 0.81</div>
+    </div>
+
+  </div>
+</body></html>
