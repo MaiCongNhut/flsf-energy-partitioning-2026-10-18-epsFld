@@ -1,8 +1,8 @@
-   __pycache__/
-   *.pyc
-   .ipynb_checkpoints/
-   .DS_Store
-   .venv/
-   venv/
-   *.log
-   results/cnn_cv/fold_*.npz
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+.venv/
+venv/
+*.log
+results/cnn_cv/fold_*.npz
