@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use these data or this code, please cite the paper and this release."
+title: "FLSF solar-farm energy partitioning: eddy-covariance data and model code"
+version: "1.0.0"
+type: software
+license:
+  - MIT
+  - CC-BY-4.0
+repository-code: "https://github.com/MaiCongNhut/flsf-energy-partitioning"
+authors:
+  - family-names: "Mai"
+    given-names: "Nhut Cong"
+    affiliation: "Taiwan International Graduate Program — Earth System Science (TIGP-ESS), Academia Sinica, Taipei, Taiwan; Earth System Science Program, Taiwan International Graduate Program, National Taiwan University, Taipei, Taiwan"
+  - family-names: "Chen"
+    given-names: "Yi-Ying"
+    email: "yiyingchen@gate.sinica.edu.tw"
+    affiliation: "Taiwan International Graduate Program — Earth System Science (TIGP-ESS), Academia Sinica, Taipei, Taiwan; Earth System Science Program, Taiwan International Graduate Program, National Taiwan University, Taipei, Taiwan; Research Center for Environmental Changes (RCEC), Academia Sinica, Taipei, Taiwan"
+  - family-names: "Chang"
+    given-names: "Shih-Chieh"
+    affiliation: "Department of Natural Resources and Environmental Studies, National Dong Hwa University, Hualien, Taiwan"
+  - family-names: "Lo"
+    given-names: "Min-Hui"
+    affiliation: "Taiwan International Graduate Program — Earth System Science (TIGP-ESS), Academia Sinica, Taipei, Taiwan; Earth System Science Program, Taiwan International Graduate Program, National Taiwan University, Taipei, Taiwan; Department of Atmospheric Sciences, National Taiwan University, Taipei, Taiwan"
+preferred-citation:
+  type: article
+  title: "Surface Energy Partitioning in a Humid Subtropical Utility-Scale Solar Farm: Insights from Field Observations and Numerical Simulations"
+  authors:
+    - family-names: "Mai"
+      given-names: "Nhut Cong"
+    - family-names: "Chen"
+      given-names: "Yi-Ying"
+    - family-names: "Chang"
+      given-names: "Shih-Chieh"
+    - family-names: "Lo"
+      given-names: "Min-Hui"
+  journal: "Journal of Applied Meteorology and Climatology"
+  year: 2026
+  notes: "Manuscript JAMC-D-26-0098, under review."
