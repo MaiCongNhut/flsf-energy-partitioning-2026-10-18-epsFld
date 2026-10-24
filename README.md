@@ -108,6 +108,14 @@ All figure scripts share one style (`figures/scripts/style.py`): fonts, season c
 * The plant's metered electricity record is proprietary to Star Shining Energy Co., Ltd. and is not included;
   the efficiency η = 0.11 used by the model is stated in `flsf/config.py`.
 
+  > **Superseded version of 18 October 2026.** This repository keeps the code and results as they were on
+> 18 October 2026, during the second revision of manuscript JAMC-D-26-0098. In this version the net radiation
+> applies the surface emissivity to the downwelling longwave flux, Rn = (1 − α)Fsd + εFld − εσTs⁴
+> (`RN_EMISSIVITY = True` in `flsf/config.py`), and gap-filled turbulent fluxes are used as observations. Its
+> results do not match the submitted manuscript. The final version is at
+> https://github.com/MaiCongNhut/flsf-energy-partitioning (release v1.0.0); the differences are items 11 to 17
+> of its CHANGELOG.md.
+
 ## License and citation
 
 Code: MIT license (`LICENSE`). Data in `data/raw/` and `data/derived/`: Creative Commons Attribution 4.0 (`LICENSE-DATA`).
